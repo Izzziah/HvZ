@@ -1,3 +1,22 @@
-<p>
-  user-home works!
-</p>
+<div> 
+  <div class="account-info">
+    <div class="username">Username: {{playername}}</div>
+    <div class="email">Email: {{email}}</div>
+    <div class="code-entry">Code Entry: 
+      <input class="code-entry" #entry (keyup.enter)="evaluate(entry.value)" autofocus="autofocus" />
+    </div>
+    <div class="score">Score: {{score}}</div>
+  </div>
+  <div class="player-lists">
+    <table class="player-rankings">Player Rankings<br />
+      <tr>
+        <th>Name</th>
+        <th>Score</th>
+      </tr>
+      <tr *ngFor="let player of players">
+        <th>{{player.playerName}}</th>
+        <th>{{player.score}}</th>
+      </tr>
+    </table>
+  </div>
+</div>

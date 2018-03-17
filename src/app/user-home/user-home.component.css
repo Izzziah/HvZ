@@ -1,0 +1,38 @@
+div.account-info {
+    margin-top: 1.5%;
+    margin-left: 2%;
+    border: 1px solid black;
+    padding: 3px;
+    display: inline-block;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+}
+div.username, div.email, div.code-entry, div.score {
+    margin: 1%;
+}
+div.player-rankings, div.player-scores {
+    /* float: right; */
+    display: inline-block;
+    margin-left: 1px;
+    margin-right: 1px;
+    padding: 1px;
+    border: 1px solid black;
+}
+div.player-lists {
+    margin-top: 1.5%;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}

@@ -1,0 +1,15 @@
+div.about-info {
+    margin-top: 1.5%;
+    margin-left: 1.5%;
+    border: 1px solid black;
+    padding: 3px;
+    display: block;
+}
+div.about-contact {
+    /* float: right; */
+    display: inline-block;
+    margin-top: 1.5%;
+    margin-left: 0%;
+    margin-right: 1.5%;
+    border: 1px solid black;
+}

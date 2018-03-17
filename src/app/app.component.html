@@ -1,13 +1,12 @@
 <div class="page-slot">
   <div class="header-slot">
     <div class="header" id="title">{{title}}</div>
-    <div class="header" id="login" (click)="toLogin()">Login/Register</div>
+    <!-- <div class="header" id="login" (click)="toLogin()">Login/Register</div> -->
   </div>
   <div class="nav-slot">
     <div class="nav-list">
-      <li>link</li>
-      <li>link</li>
-      <li>link</li>
+      <li [routerLink]="['/userhome']">link</li>
+      <li [routerLink]="['/about']">link</li>
     </div>
   </div>
   <router-outlet></router-outlet>

@@ -12,7 +12,7 @@ export class AuthenticationService {
   public _playerScore: number;
 
   private loggedIn: boolean = false;
-  loggedIn$: Observable<any>;
+  private loggedIn$: Observable<any>;
   private _observer: Observer<boolean>;
 
   constructor(private apiService: ApiService) {
@@ -48,12 +48,18 @@ export class AuthenticationService {
     this.loginSet(false);
   }
 
-  public loginSet(loggedIn: boolean)
+  private loginSet(loggedIn: boolean)
   {
     this.loggedIn = loggedIn;
+    // console.log('loginSet(...) ==> ' + this.loggedIn)
     if (this._observer) {
         this._observer.next(this.loggedIn);
     }
+  }
+
+  checkLogin(): boolean
+  {
+    return this.loggedIn;
   }
 
 }

@@ -14,6 +14,8 @@ import { AppRoutingModule } from 'app/app-routing/app-routing.module';
 import { AuthenticationService } from 'app/services/authentication.service';
 import { ApiService } from "app/services/api.service";
 import { NavService } from "app/services/nav.service";
+import { AuthGuardComponent } from './auth-guard/auth-guard.component';
+import { PlayerService } from './services/player.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { NavService } from "app/services/nav.service";
     RegistrationComponent,
     AdminComponent,
     LoginComponent,
-    ViewportComponent
+    ViewportComponent,
+    AuthGuardComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,7 @@ import { NavService } from "app/services/nav.service";
     HttpModule,
     AppRoutingModule
   ],
-  providers: [AuthenticationService, ApiService, NavService],
+  providers: [AuthenticationService, ApiService, NavService, PlayerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

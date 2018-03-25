@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Router } from "@angular/router";
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,27 @@ import { Router } from "@angular/router";
 })
 export class AppComponent {
   title = 'app works!';
+  loggedin = false;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private authService: AuthenticationService
+  ) { }
 
-  toLogin() {
+  toLogin() {this.authService.validateToken().subscribe(
+    data =>
+    {
+      this.router.navigate(['/login']);
+      this.loggedin = true;
+    },
+    err => {
+      this.loggedin = false;
+    });
+  }
+
+  logout()
+  {
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 }

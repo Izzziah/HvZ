@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   login(username: string, password: string)
   {
     this.loading = true;
-    // console.log('1 loggedin? -- ' + this.authenticationService.checkLogin());
+    // console.log('1 loggedin? -- ' + this.authenticationService.validateToken());
     try {
       this.authenticationService.login(username, password)
         .subscribe(
@@ -43,22 +43,20 @@ export class LoginComponent implements OnInit {
     catch (ex) {
       console.error('Error loggin in: ' + ex);
     }
-    // console.log('loggedIn: ' + this.authenticationService.loggedIn())
-    // console.log('2 loading? -- ' + this.loading);
-    // console.log('2 loggedin? -- ' + this.authenticationService.checkLogin());
   }
 
   private loginSuccess(data)
   {
     this.loading = false;
-    // console.log('3a loggedin? -- ' + this.authenticationService.checkLogin());
+    sessionStorage.setItem("player", JSON.stringify(data));
+    // console.log('3a loggedin? -- ' + this.authenticationService.validateToken());
     this.navService.navTo('/userhome');
   }
 
   private loginError(err)
   {
     let errMsg = 'Username or password is incorrect';
-    // console.log('3b loggedin? -- ' + this.authenticationService.checkLogin());
+    // console.log('3b loggedin? -- ' + this.authenticationService.validateToken());
     if (err instanceof Response) {
         let resp: Response = err;
         let body = resp.json();

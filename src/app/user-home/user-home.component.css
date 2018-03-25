@@ -36,3 +36,7 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+div.err-msg {
+    color: red;
+    font-size-adjust: .45;
+}

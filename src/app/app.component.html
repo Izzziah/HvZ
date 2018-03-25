@@ -1,7 +1,8 @@
 <div class="page-slot">
   <div class="header-slot">
     <div class="header" id="title">{{title}}</div>
-    <!-- <div class="header" id="login" (click)="toLogin()">Login/Register</div> -->
+    <div *ngIf="loggedin==false" class="header" id="login" (click)="toLogin()">Login</div>
+    <div *ngIf="loggedin==true" class="header" id="login" (click)="logout()">Logout</div>
   </div>
   <div class="nav-slot">
     <div class="nav-list">

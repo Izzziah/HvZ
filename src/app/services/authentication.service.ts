@@ -7,9 +7,6 @@ import {Observable} from 'rxjs/Observable';
 export class AuthenticationService {
   // Authenticate and load user if valid.
   public player: any = null;
-  public _playerId: number;
-  public _playerName: string;
-  public _playerScore: number;
 
   private loggedIn: boolean = false;
   private loggedIn$: Observable<any>;
@@ -25,22 +22,21 @@ export class AuthenticationService {
     let obser: any = this.apiService.Get(cmd).share();
     obser.subscribe(
       data => {
-        localStorage.setItem('player', JSON.stringify(data));
         this.player = data;
-        this._playerId = data["PlayerId"];
-        this._playerName = data["PlayerName"];
-        this._playerScore = data["Score"];
         this.loginSet(true);
-        console.log('login: ' + this.loggedIn);
-        return true;
+        // console.log('login: ' + this.loggedIn);
       },
       err => {
         console.log('err: ' + err);
         this.loginSet(false);
-        return false;
       }
     );
     return obser;
+  }
+
+  getplayer()
+  {
+    return this.player;
   }
 
   logout()
@@ -51,15 +47,37 @@ export class AuthenticationService {
   private loginSet(loggedIn: boolean)
   {
     this.loggedIn = loggedIn;
-    // console.log('loginSet(...) ==> ' + this.loggedIn)
     if (this._observer) {
         this._observer.next(this.loggedIn);
     }
   }
 
-  checkLogin(): boolean
+  // validateTokenOld(): boolean
+  // {
+  //   this.player = JSON.parse(sessionStorage.getItem('player'));
+  //   // console.log('player: ' + JSON.stringify(this.player));
+  //   if (this.player == null)
+  //   {
+  //     return false;
+  //   }
+  //   var tokenUri = encodeURIComponent(this.player["AccessToken"]);
+  //   console.log("access token uri: " + tokenUri);
+  //   this.apiService.Get('/verifyToken?playerId=' + this.player["PlayerId"]
+  //     + '&token=' + tokenUri).subscribe(data => {
+  //       console.log('data: ' + JSON.stringify(data));
+  //       return true;
+  //     },
+  //     err => {return false;}
+  //     );
+  // }
+
+  validateToken()
   {
-    return this.loggedIn;
+    this.player = JSON.parse(sessionStorage.getItem('player'));
+    var tokenUri = encodeURIComponent(this.player["AccessToken"]);
+    console.log('player: ' + JSON.stringify(this.player));
+    return this.apiService.Get('/verifyToken?playerId=' + this.player["PlayerId"]
+      + '&token=' + tokenUri);
   }
 
 }

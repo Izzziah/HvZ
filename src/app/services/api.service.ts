@@ -40,15 +40,17 @@ export class ApiService {
   }
 
   public Post(cmd: string, bodyData: string) {
-    //  let len = bodyData.length;
-    //  if (this.headers["Content-Length"]) {
-    //  this.headers.delete("Content-Length")
-    //  }
-    //  this.headers.append("Content-Length", len.toString());
+    console.log('post: ' + environment.hvzBaseURL + cmd);
     return this.http.post(environment.hvzBaseURL + cmd, bodyData, { headers: ApiService.headers })
       .map(res =>  { res.json(); } )
       .catch(this.handleError);
   }
+
+  // public Delete(cmd: string, bodyData: string) {
+  //   return this.http.post(environment.hvzBaseURL + cmd, { headers: ApiService.headers })
+  //     .map(res =>  { res.json(); } )
+  //     .catch(this.handleError);
+  // }
 
   public Put(cmd: string, bodyData: string) {
     let len = bodyData.length;

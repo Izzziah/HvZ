@@ -1,0 +1,16 @@
+div.reg-slot {
+    display: inline-block;
+    border: 1px solid black;
+    background-color: palegoldenrod;
+    /* margin: 5px; */
+    padding: 3px;
+}
+input {
+    width: 80%
+}
+div.title {
+    font-size: 150%;
+}
+div.err-msg {
+    color: red;
+}

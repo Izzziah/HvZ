@@ -3,7 +3,8 @@
     <div class="username">Username: {{playername}}</div>
     <div class="email">Email: {{email}}</div>
     <div class="code-entry">Code Entry: 
-      <input class="code-entry" #entry (keyup.enter)="evaluate(entry.value)" autofocus="autofocus" />
+      <input class="code-entry" #entry (keyup.enter)="evaluate(entry.value);" autofocus="autofocus" />
+      <div *ngIf="errMsg" class="err-msg">{{errMsg}}</div>
     </div>
     <div class="score">Score: {{score}}</div>
   </div>

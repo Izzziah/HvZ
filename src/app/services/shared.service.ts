@@ -1,8 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Component, Injectable,Input,Output,EventEmitter } from '@angular/core';
 
 @Injectable()
 export class SharedService {
+  @Output() fire: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+   constructor() { }
 
-}
+   change() {
+    console.log('emit'); 
+     this.fire.emit(true);
+   }
+
+   getEmittedValue() {
+     return this.fire;
+   }
+
+} 

@@ -42,6 +42,7 @@ export class AuthenticationService {
   logout()
   {
     this.loginSet(false);
+    sessionStorage.clear();
   }
 
   private loginSet(loggedIn: boolean)
@@ -73,11 +74,16 @@ export class AuthenticationService {
 
   validateToken()
   {
+    // console.log('validating...');
     this.player = JSON.parse(sessionStorage.getItem('player'));
-    var tokenUri = encodeURIComponent(this.player["AccessToken"]);
-    console.log('player: ' + JSON.stringify(this.player));
-    return this.apiService.Get('/verifyToken?playerId=' + this.player["PlayerId"]
-      + '&token=' + tokenUri);
+    if (this.player != null)
+    {
+      var tokenUri = encodeURIComponent(this.player["AccessToken"]);
+      console.log('player: ' + JSON.stringify(this.player));
+      return this.apiService.Get('/verifyToken?playerId=' + this.player["PlayerId"]
+        + '&token=' + tokenUri);
+    }
+    return null;
   }
 
 }

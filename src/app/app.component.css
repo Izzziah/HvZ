@@ -8,7 +8,7 @@
 div.header {
     display: inline-block;
     border: 1px solid black;
-    background-color: palegoldenrod;
+    background-color: rgb(174, 221, 207);
     margin: 5px;
     padding: 3px;
 }
@@ -21,6 +21,7 @@ div.header-slot {
 }
 div#login {
     float: right;
+    cursor: pointer;
 }
 div.nav-slot {
     border: 1px solid black;
@@ -39,4 +40,9 @@ div.view-slot {
     display: inline-block;
     margin: 5px;
     border: 1px dashed black;
+}
+li {
+    text-decoration: underline;
+    color: rgb(0, 110, 146);
+    cursor: pointer;
 }

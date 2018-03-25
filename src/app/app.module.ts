@@ -16,6 +16,7 @@ import { ApiService } from "app/services/api.service";
 import { NavService } from "app/services/nav.service";
 import { AuthGuardComponent } from './auth-guard/auth-guard.component';
 import { PlayerService } from './services/player.service';
+import { SharedService } from "./services/shared.service"
 
 @NgModule({
   declarations: [
@@ -34,7 +35,13 @@ import { PlayerService } from './services/player.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [AuthenticationService, ApiService, NavService, PlayerService],
+  providers: [
+    AuthenticationService, 
+    ApiService, 
+    NavService, 
+    PlayerService,
+    SharedService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

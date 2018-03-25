@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Response } from '@angular/http';
 
 import { Router, ActivatedRoute } from "@angular/router";
 import { AuthenticationService } from 'app/services/authentication.service';
 import { NavService } from '../services/nav.service';
+import { SharedService } from '../services/shared.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   model: any = {};
   loading = false;
   errMsg: string;
@@ -20,11 +21,11 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private navService: NavService
+    private navService: NavService,
+    private sharedService: SharedService
     // ,private alertService: AlertService
-  ) { }
-
-  ngOnInit() {
+  ) {
+    this.sharedService = sharedService;
   }
 
   login(username: string, password: string)
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
         .subscribe(
           data => {
             this.loginSuccess(data);
+            this.sharedService.change();
           },
           err => this.loginError(<any>err)
         );

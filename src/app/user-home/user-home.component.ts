@@ -30,7 +30,7 @@ export class UserHomeComponent implements OnInit {
   ngOnInit() {
     this.player = JSON.parse(sessionStorage.getItem("player"));
     this.refresh();
-    this.refreshUser(this.player);
+    this.refreshUser();
     if (this.player)
     {
       this.sharedService.change();
@@ -40,9 +40,8 @@ export class UserHomeComponent implements OnInit {
 
   refresh()
   {
-    this.refreshUser(this.player);
+    this.refreshUser();
     // console.log('info 1: ' + this.player.Score);
-    // if ()
     this.playerService.getAllPlayers().subscribe(data => {
       this.players = data;
     },
@@ -51,19 +50,20 @@ export class UserHomeComponent implements OnInit {
     });
   }
 
-  refreshUser(cur_usr: any)
+  refreshUser()
   {
-    this.playerService.getPlayerById(this.playerId).subscribe(data => {
-      this.player = data;
+    this.playerService.getPlayerById(this.player.PlayerId).subscribe(data => {
+      this.player = data; 
+      console.log('data-: ' + JSON.stringify(data));
       sessionStorage.setItem('player', JSON.stringify(data));
+      this.playername = this.player.PlayerName;
+      this.score = this.player.Score;
+      this.email = this.player.Email;
+      this.playerId = this.player.PlayerId;
     },
     err => {
       console.log(err);
     });
-    this.playername = this.player.PlayerName;
-    this.score = this.player.Score;
-    this.email = this.player.Email;
-    this.playerId = this.player.PlayerId;
   }
 
   validateToken()
@@ -93,7 +93,8 @@ export class UserHomeComponent implements OnInit {
             res => {
                 if (res != null)
                 {
-                  this.playerService.deleteCode(res["CodeId"]);
+                  // this.playerService.deleteCode(res["CodeId"]);
+                  this.playerService.setUsedCode(res["CodeId"], res["PlayerId"]);
                   this.playerService.postPlayerScore(this.playerId, this.score + res["Score"]);
                   this.errMsg = null;
                 }

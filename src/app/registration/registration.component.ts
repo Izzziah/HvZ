@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlayerService } from '../services/player.service';
 import { Response } from '@angular/http';
-import { NavService } from '../services/nav.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -14,15 +14,15 @@ export class RegistrationComponent implements OnInit {
   errMsg: string;
 
   constructor(private playerService: PlayerService,
-    private navService: NavService) { }
+    private router: Router) { }
 
   ngOnInit() {
   }
 
-  register(playerName: string, password: string, email: string)
+  register(playerName: string, password: string, realname: string, email: string)
   {
-    this.playerService.postNewPlayer(playerName, password, email);
-    this.navService.navTo('/login');
+    this.playerService.postNewPlayer(playerName, password, realname, email, 10); // 10 is a placeholder
+    this.router.navigate(['/login']);
   }
 
 }

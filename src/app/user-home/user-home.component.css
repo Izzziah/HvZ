@@ -9,8 +9,14 @@ div.account-info {
     width: 80%;
     background-color: rgb(174, 221, 207);
 }
-div.username, div.email, div.code-entry, div.score {
+div.username, div.email, div.code-entry, div.score, div.player-code {
     margin: 1%;
+}
+div.player-code, div.username {
+    display: inline-block;
+}
+div.player-code {
+    float: right;
 }
 div.player-rankings, div.player-scores {
     /* float: right; */

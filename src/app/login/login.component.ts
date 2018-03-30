@@ -4,7 +4,6 @@ import { Response } from '@angular/http';
 
 import { Router, ActivatedRoute } from "@angular/router";
 import { AuthenticationService } from 'app/services/authentication.service';
-import { NavService } from '../services/nav.service';
 import { SharedService } from '../services/shared.service';
 
 @Component({
@@ -21,9 +20,7 @@ export class LoginComponent {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private navService: NavService,
     private sharedService: SharedService
-    // ,private alertService: AlertService
   ) {
     this.sharedService = sharedService;
   }
@@ -37,6 +34,7 @@ export class LoginComponent {
         .subscribe(
           data => {
             this.loginSuccess(data);
+            // sessionStorage.setItem('player', JSON.stringify(data));
             this.sharedService.change();
           },
           err => this.loginError(<any>err)
@@ -50,9 +48,11 @@ export class LoginComponent {
   private loginSuccess(data)
   {
     this.loading = false;
+    // console.log('> data -- ' + JSON.stringify(data));
     sessionStorage.setItem("player", JSON.stringify(data));
     // console.log('3a loggedin? -- ' + this.authenticationService.validateToken());
-    this.navService.navTo('/userhome');
+    this.router.navigate(['/userhome']);
+
   }
 
   private loginError(err)

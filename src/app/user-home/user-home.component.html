@@ -1,6 +1,7 @@
 <div> 
   <div class="account-info">
     <div class="username">Username: {{playername}}</div>
+    <div class="player-code">PointsCodeHere</div>
     <div class="email">Email: {{email}}</div>
     <form (ngSubmit)="evaluate(model.entry);" class="code-entry">Code Entry: 
       <input class="code-entry" name="entry" [(ngModel)]="model.entry" #entry="ngModel" 

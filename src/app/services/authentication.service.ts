@@ -53,33 +53,15 @@ export class AuthenticationService {
     }
   }
 
-  // validateTokenOld(): boolean
-  // {
-  //   this.player = JSON.parse(sessionStorage.getItem('player'));
-  //   // console.log('player: ' + JSON.stringify(this.player));
-  //   if (this.player == null)
-  //   {
-  //     return false;
-  //   }
-  //   var tokenUri = encodeURIComponent(this.player["AccessToken"]);
-  //   console.log("access token uri: " + tokenUri);
-  //   this.apiService.Get('/verifyToken?playerId=' + this.player["PlayerId"]
-  //     + '&token=' + tokenUri).subscribe(data => {
-  //       console.log('data: ' + JSON.stringify(data));
-  //       return true;
-  //     },
-  //     err => {return false;}
-  //     );
-  // }
-
   validateToken()
   {
     // console.log('validating...');
     this.player = JSON.parse(sessionStorage.getItem('player'));
     if (this.player != null)
     {
-      var tokenUri = encodeURIComponent(this.player["AccessToken"]);
-      console.log('player: ' + JSON.stringify(this.player));
+      var tokenUri = encodeURIComponent(this.player["Token"]);
+      // console.log('player: ' + JSON.stringify(this.player));
+      // console.log('token: ' + tokenUri)
       return this.apiService.Get('/verifyToken?playerId=' + this.player["PlayerId"]
         + '&token=' + tokenUri);
     }

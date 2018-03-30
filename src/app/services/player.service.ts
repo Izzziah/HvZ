@@ -40,10 +40,10 @@ export class PlayerService {
       return obser;
     }
 
-    postNewPlayer(playerName: string, password: string, email: string)
+    postNewPlayer(playerName: string, password: string, realname: string, email: string, points: number)
     {
-        let cmd = 'player/postNewPlayer?playerName=' + playerName +
-                  '&password=' + password + '&email=' + email;
+        let cmd = 'player/postNewPlayer?playerName=' + playerName + '&password=' 
+                  + password + '&realname=' + realname + '&email=' + email + '&points=' + points;
         this.apiService.Post(cmd, null).subscribe(null,
             err => {
                 console.log('player.service.postNewPlayer err: ' + err);
@@ -81,6 +81,17 @@ export class PlayerService {
     deleteCode(codeId: number)
     {
         let cmd = 'player/deleteCode?codeId=' + codeId;
+        console.log('delete: ' + cmd);
+        // looks like we need to subscribe to get the request to go through
+        this.apiService.Post(cmd, null).subscribe(null, 
+          err => {
+              console.log('player.service.deleteCode err: ' + err);
+          });
+    }
+
+    setUsedCode(codeId: number, userId)
+    {
+        let cmd = 'player/setUsedCode?codeId=' + codeId + 'userId' + userId;
         console.log('delete: ' + cmd);
         // looks like we need to subscribe to get the request to go through
         this.apiService.Post(cmd, null).subscribe(null, 

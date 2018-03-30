@@ -9,7 +9,7 @@ import { environment } from '../environments/environment';
 export class ApiService {
 
   private static headers: Headers;
-  private static accessToken: string = '';
+  private static Token: string = '';
   private apiKey: string = "C86714EE-9246-482F-BF08-00FC7EF4D4EA";
 
   constructor(private http: Http) {
@@ -18,7 +18,7 @@ export class ApiService {
       ApiService.headers.append('Accept', 'application/json');
       ApiService.headers.append('Content-Type', 'application/json');
       ApiService.headers.append('APIKey', this.apiKey)
-      ApiService.headers.append('accessToken', ApiService.accessToken);
+      ApiService.headers.append('Token', ApiService.Token);
     }
   }
 
@@ -27,9 +27,9 @@ export class ApiService {
   }
 
   public setToken(token: string) {
-    ApiService.headers.delete('accessToken');
-    ApiService.headers.append('accessToken', token);
-    ApiService.accessToken = token;
+    ApiService.headers.delete('Token');
+    ApiService.headers.append('Token', token);
+    ApiService.Token = token;
   }
 
 
@@ -40,7 +40,7 @@ export class ApiService {
   }
 
   public Post(cmd: string, bodyData: string) {
-    console.log('post: ' + environment.hvzBaseURL + cmd);
+    // console.log('post: ' + environment.hvzBaseURL + cmd);
     return this.http.post(environment.hvzBaseURL + cmd, bodyData, { headers: ApiService.headers })
       .map(res =>  { res.json(); } )
       .catch(this.handleError);
@@ -53,7 +53,7 @@ export class ApiService {
   // }
 
   public Put(cmd: string, bodyData: string) {
-    let len = bodyData.length;
+    // let len = bodyData.length;
     return this.http.put(environment.hvzBaseURL + cmd, bodyData, { headers: ApiService.headers })
       .map(res => res.json())
       .catch(this.handleError);

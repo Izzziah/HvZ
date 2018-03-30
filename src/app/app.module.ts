@@ -9,11 +9,9 @@ import { AboutComponent } from './about/about.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
-import { ViewportComponent } from './viewport/viewport.component';
 import { AppRoutingModule } from 'app/app-routing/app-routing.module';
 import { AuthenticationService } from 'app/services/authentication.service';
 import { ApiService } from "app/services/api.service";
-import { NavService } from "app/services/nav.service";
 import { AuthGuardComponent } from './auth-guard/auth-guard.component';
 import { PlayerService } from './services/player.service';
 import { SharedService } from "./services/shared.service"
@@ -26,7 +24,6 @@ import { SharedService } from "./services/shared.service"
     RegistrationComponent,
     AdminComponent,
     LoginComponent,
-    ViewportComponent,
     AuthGuardComponent
   ],
   imports: [
@@ -38,7 +35,6 @@ import { SharedService } from "./services/shared.service"
   providers: [
     AuthenticationService, 
     ApiService, 
-    NavService, 
     PlayerService,
     SharedService
   ],

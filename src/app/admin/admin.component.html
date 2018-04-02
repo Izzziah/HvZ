@@ -1,3 +1,130 @@
-<p>
-  admin works!
-</p>
+<div> 
+  <div class="account-info">
+    <div class="username">Admin</div>
+    <div class="player-code">Administrator</div>
+    <div class="email">Email: {{email}}</div>
+
+    <div class="control-slot">
+      <div class="validate-slot">
+      <div>Validate player by ID number</div>
+      <input (keyup.enter)="verify(model.pID)" (keyup.shift.enter)="inverify(model.pID)" 
+      [(ngModel)]="model.pID" #pID="ngModel" autofocus />
+      <button (click)="verify(model.pID)">Validate</button>
+      <button (click)="inverify(model.pID)">Invalidate</button>
+      </div>
+      <div class="control-slot">
+        <div class="zombie-slot">
+        <div>Infect player by ID</div>
+        <input (keyup.enter)="infect(model.zID)" (keyup.shift.enter)="cure(model.zID)" 
+        [(ngModel)]="model.zID" #zID="ngModel" />
+        <button (click)="infect(model.zID)">Infect</button>
+        <button (click)="cure(model.zID)">Cure</button>
+        </div>
+      <div class="event-slot">
+        <div>Create New Event</div>
+        <form #f="ngForm" (ngSubmit)="createEvent(eName.value, ePoints.value, stunDur.value, eDesc.value)">
+        <div class="title">Event Name:</div>
+        <input name="eName" ngModel #eName="ngModel" required />
+        <div class="title">Points to be awarded</div>
+        <input type="number" name="ePoints" ngModel #ePoints="ngModel" required />
+        <div class="title">Stun Duration</div>
+        <input type="datetime" name="stunDur" ngModel #stunDur="ngModel" required />
+        <div class="title">Description</div>
+        <input type="text" name="eDesc" ngModel #eDesc="ngModel" required />
+        <button [disabled]="loading" class="event-button">Create</button>
+        </form>
+        <div class="control-slot">
+          <div class="event-slot">
+          <div>Remove player from event by ID</div>
+          <label>Player ID <input (keyup.enter)="removePlayerFromEvent(model.plaID, model.eveID)"
+            [(ngModel)]="model.plaID" #plaID="ngModel" /></label>
+          <label>Event ID<input (keyup.enter)="removePlayerFromEvent(model.plaID, model.eveID)"
+          [(ngModel)]="model.eveID" #eveID="ngModel" /></label>
+          <button (click)="removePlayerFromEvent(model.plaID, model.eveID)">Remove</button>
+          </div>
+      </div>
+    </div>
+    <div class="del-slot">
+      <div class="title">Delete event by ID:</div>
+      <input [(ngModel)]="model.eID" #eID="ngModel" /> <!-- (keyup.enter)="verify(model.eID)" -->
+      <button (click)="deleteEvent(model.eID)">DELETE EVENT</button>
+    </div>
+    
+    <div class="player-lists">
+      <table class="player-rankings">All Players<br />
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Score</th>
+          <th>Verification Date</th>
+        </tr> 
+        <tr *ngFor="let player of players">
+          <th (click)="loadPlayerEvents(player.playerId)">{{player.playerId}}</th>
+          <th (click)="loadPlayerEvents(player.playerId)">{{player.playerName}}</th>
+          <th (click)="loadPlayerEvents(player.playerId)">{{player.score}}</th>
+          <th *ngIf="player.validation">{{player.validation}}</th>
+          <th *ngIf="!player.validation">Unverified</th>
+        </tr>
+      </table>
+      <table class="zomb-rankings">Infected<br />
+        <tr class="zomb">
+          <th>ID</th>
+          <th>Name</th>
+          <th>Score</th>
+          <th>Infection Date</th>
+        </tr>
+        <tr  class="zomb" *ngFor="let zombie of zombies">
+          <th>{{zombie.playerId}}</th>
+          <th>{{zombie.playerName}}</th>
+          <th>{{zombie.score}}</th>
+          <th>{{zombie.zombified}}</th>
+        </tr>
+      </table>
+      <button (click)="cureAll()">CURE ALL INFECTED</button>
+    </div>
+
+    <div class="event-list">
+        <table class="events">Events<br />
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Points</th>
+          </tr> 
+          <tr *ngFor="let event of events">
+            <th>{{event.eventId}}</th>
+            <th>{{event.eventName}}</th>
+            <th>{{event.points}}</th>
+          </tr>
+        </table>
+      </div>
+      <div class="player-event-list">
+        <table class="events-list">Joined-Events for Player {{playerId}}<br />
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Points</th>
+          </tr> 
+          <tr *ngFor="let joinedEvent of joinedEvents">
+            <th>{{joinedEvent.eventId}}</th>
+            <th>{{joinedEvent.eventName}}</th>
+            <th>{{joinedEvent.points}}</th>
+          </tr>
+        </table>
+      </div>
+
+      <div class="used-code-list">
+        <table class="events-list">Joined-Events for Player {{playerId}}<br />
+          <tr>
+            <th>Player ID</th>
+            <th>Date</th>
+            <th>Points</th>
+          </tr> 
+          <tr *ngFor="let joinedEvent of joinedEvents">
+            <th>{{code.playerId}}</th>
+            <th>{{code.date}}</th>
+            <th>{{code.score}}</th>
+          </tr>
+        </table>
+      </div>
+  </div>
+  <div>Admin</div>

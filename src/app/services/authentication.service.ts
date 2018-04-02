@@ -18,7 +18,9 @@ export class AuthenticationService {
 
   login(username: string, password: string)
   {
-    let cmd = 'player/login?playerName=' + username + '&password=' + password;
+    let cmd = 'player/login?playerName=' + encodeURIComponent(username) + 
+      '&password=' + encodeURIComponent(password);
+    // console.log(cmd);
     let obser: any = this.apiService.Get(cmd).share();
     obser.subscribe(
       data => {

@@ -14,7 +14,9 @@ import { AuthenticationService } from 'app/services/authentication.service';
 import { ApiService } from "app/services/api.service";
 import { AuthGuardComponent } from './auth-guard/auth-guard.component';
 import { PlayerService } from './services/player.service';
-import { SharedService } from "./services/shared.service"
+import { AdminService } from "./services/admin.service";
+import { SharedService } from "./services/shared.service";
+import { OnCreateDirective } from './on-create.directive'
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { SharedService } from "./services/shared.service"
     RegistrationComponent,
     AdminComponent,
     LoginComponent,
-    AuthGuardComponent
+    AuthGuardComponent,
+    OnCreateDirective
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { SharedService } from "./services/shared.service"
     AuthenticationService, 
     ApiService, 
     PlayerService,
-    SharedService
+    SharedService,
+    AdminService
   ],
   bootstrap: [AppComponent]
 })

@@ -5,6 +5,7 @@ import { Response } from '@angular/http';
 import { Router, ActivatedRoute } from "@angular/router";
 import { AuthenticationService } from 'app/services/authentication.service';
 import { SharedService } from '../services/shared.service';
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
+    private adminService: AdminService,
     private sharedService: SharedService
   ) {
     this.sharedService = sharedService;
@@ -50,9 +52,15 @@ export class LoginComponent {
     this.loading = false;
     // console.log('> data -- ' + JSON.stringify(data));
     sessionStorage.setItem("player", JSON.stringify(data));
-    // console.log('3a loggedin? -- ' + this.authenticationService.validateToken());
-    this.router.navigate(['/userhome']);
-
+    this.adminService.checkAdmin(data["PlayerId"]).
+    subscribe(data => {
+      console.log('admin');
+      this.router.navigate(['/admin']);
+    }, err => {
+      console.log('regular');
+      this.router.navigate(['/userhome']);
+    });
+    
   }
 
   private loginError(err)

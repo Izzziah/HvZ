@@ -1,0 +1,95 @@
+div.account-info {
+    margin-top: 1.5%;
+    margin-left: 1%;
+    border: 1px solid black;
+    padding: 3px;
+    display: inline-block;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    background-color: rgb(253, 230, 154);
+}
+div.username, div.email, div.code-entry, div.score, div.player-code {
+    margin: .1%;
+}
+div.player-code, div.username, div.username-zomb {
+    display: inline-block;
+}
+div.player-code {
+    float: right;
+    background-color: #85c9b4;
+    font-size: 75%;
+}
+div.player-rankings, div.zomb-rankings, div.player-scores {
+    /* float: right; */
+    display: inline-block;
+    margin-left: 1px;
+    margin-right: 1px;
+    padding: 1px;
+    border: 1px solid black;
+}
+div.player-lists {
+    margin-top: 1.5%;
+}
+table {
+    margin-left: 1%;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+}
+td, th {
+    border: 1px solid grey;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #85c9b4;
+}
+tr:nth-child(odd) {
+    background-color: rgb(174, 221, 207);
+}
+div.err-msg {
+    color: red;
+    font-size-adjust: .45;
+}
+div.control-slot {
+    background-color: rgb(253, 222, 154);
+}
+div.event-slot {
+    background-color: rgb(255, 238, 193);
+    border: 1px solid black;
+    padding: 2px;
+    margin-top: 5px;
+
+}
+div.del-slot {
+    background-color: rgb(253, 117, 117);
+    border: 1px solid black;
+    padding: 2px;
+    margin-top: 5px;
+
+}
+
+div.account-info-zomb {
+    margin-top: 1.5%;
+    margin-left: 1%;
+    border: 1px solid black;
+    padding: 3px;
+    display: inline-block;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    background-color: #ffc3c3;
+}
+div.player-code-zomb, div.infected {
+    float: right;
+    background-color: #f69999;
+    font-size: 75%;
+}
+tr:nth-child(even).zomb {
+    background-color: #ff7a7a;
+}
+tr:nth-child(odd).zomb {
+    background-color: #f69999;
+}

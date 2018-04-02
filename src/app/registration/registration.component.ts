@@ -21,7 +21,7 @@ export class RegistrationComponent implements OnInit {
 
   register(playerName: string, password: string, realname: string, email: string)
   {
-    this.playerService.postNewPlayer(playerName, password, realname, email, 10); // 10 is a placeholder
+    this.playerService.postNewPlayer(playerName, password, realname, email, 1); // killer gets 1 point
     this.router.navigate(['/login']);
   }
 

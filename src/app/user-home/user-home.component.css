@@ -10,13 +10,15 @@ div.account-info {
     background-color: rgb(174, 221, 207);
 }
 div.username, div.email, div.code-entry, div.score, div.player-code {
-    margin: 1%;
+    margin: .1%;
 }
-div.player-code, div.username {
+div.player-code, div.username, div.username-zomb {
     display: inline-block;
 }
 div.player-code {
     float: right;
+    background-color: #85c9b4;
+    font-size: 75%;
 }
 div.player-rankings, div.player-scores {
     /* float: right; */
@@ -44,7 +46,35 @@ td, th {
 tr:nth-child(even) {
     background-color: #85c9b4;
 }
+tr:nth-child(odd) {
+    background-color: rgb(174, 221, 207);
+}
+
 div.err-msg {
     color: red;
     font-size-adjust: .45;
+}
+
+div.account-info-zomb {
+    margin-top: 1.5%;
+    margin-left: 1%;
+    border: 1px solid black;
+    padding: 3px;
+    display: inline-block;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    background-color: #ffc3c3;
+}
+div.player-code-zomb, div.infected {
+    float: right;
+    background-color: #f69999;
+    font-size: 75%;
+}
+
+tr:nth-child(even).zomb {
+    background-color: #ff7a7a;
+}
+tr:nth-child(odd).zomb {
+    background-color: #f69999;
 }

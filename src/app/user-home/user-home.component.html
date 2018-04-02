@@ -1,12 +1,12 @@
 <div> 
-  <div class="account-info">
+  <div *ngIf="!zombified" class="account-info">
     <div class="username">Username: {{playername}}</div>
-    <div class="player-code">PointsCodeHere</div>
+    <div class="player-code">Your Code: {{code}}</div>
     <div class="email">Email: {{email}}</div>
     <form (ngSubmit)="evaluate(model.entry);" class="code-entry">Code Entry: 
       <input class="code-entry" name="entry" [(ngModel)]="model.entry" #entry="ngModel" 
       (keyup.enter)="evaluate(model.entry);" autofocus="autofocus" required>
-      <button>Submit</button>
+      <button [disabled]="loading">Submit</button>
       <div *ngIf="errMsg" class="err-msg">{{errMsg}}</div>
     </form>
     <div class="score">Score: {{score}}</div>
@@ -22,5 +22,94 @@
         </tr>
       </table>
     </div>
+    <div *ngIf="!zombified" class="join-event-slot">
+      <div class="title">Join event by entering event ID:</div>
+      <input (keyup.enter)="joinEvent(model.eID)" [(ngModel)]="model.eID" #eID="ngModel" />
+      <button (click)="joinEvent(model.eID)">Join</button>
+    </div>
+    <div class="event-list">
+      <table class="events-list">Events<br />
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Points</th>
+        </tr> 
+        <tr *ngFor="let event of events">
+          <th>{{event.eventId}}</th>
+          <th>{{event.eventName}}</th>
+          <th>{{event.points}}</th>
+        </tr>
+      </table>
+      
+      <div class="joined-event-list">
+        <table class="events-list">Joined-Events<br />
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Points</th>
+          </tr> 
+          <tr *ngFor="let joinedEvent of joinedEvents">
+            <th>{{joinedEvent.eventId}}</th>
+            <th>{{joinedEvent.eventName}}</th>
+            <th>{{joinedEvent.points}}</th>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
-</div>
+
+  <div *ngIf="zombified" class="account-info-zomb">
+    <div class="username">Username: {{playername}}</div>
+    <div class="player-code-zomb">Your Code: {{code}}</div>
+    <div class="email">Email: {{email}}</div>
+    <form (ngSubmit)="evaluate(model.entry);" class="code-entry">Code Entry: 
+      <input class="code-entry" name="entry" [(ngModel)]="model.entry" #entry="ngModel" 
+      (keyup.enter)="evaluate(model.entry);" autofocus="autofocus" required>
+      <button [disabled]="loading">Submit</button>
+      <div *ngIf="errMsg" class="err-msg">{{errMsg}}</div>
+    </form>
+    <div class="score">Score: {{score}}</div>
+    <div class="player-lists">
+      <table class="player-rankings">Player Rankings<br />
+        <tr class="zomb">
+          <th>Name</th>
+          <th>Score</th>
+        </tr>
+        <tr  class="zomb" *ngFor="let player of players">
+          <th>{{player.playerName}}</th>
+          <th>{{player.score}}</th>
+        </tr>
+      </table>
+    </div>
+    <div  *ngIf="zombified" class="event-list-zomb">
+      <table class="events-list-zomb">Events<br />
+        <tr class="zomb">
+          <th>ID</th>
+          <th>Name</th>
+          <th>Points</th>
+        </tr> 
+        <tr class="zomb" *ngFor="let event of events">
+          <th>{{event.eventId}}</th>
+          <th>{{event.eventName}}</th>
+          <th>{{event.points}}</th>
+        </tr>
+      </table>
+      
+      <div class="event-list-zomb">
+        <table class="events-list-zomb">Joined-Events<br />
+          <tr class="zomb">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Points</th>
+          </tr> 
+          <tr class="zomb" *ngFor="let joinedEvent of joinedEvents">
+            <th>{{joinedEvent.eventId}}</th>
+            <th>{{joinedEvent.eventName}}</th>
+            <th>{{joinedEvent.points}}</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="infected">INFECTED</div>
+  </div>
+  </div>
